@@ -11,7 +11,7 @@ const User = seq.define('user', {
     type: STRING,
     allowNull: false,
     unique: true,
-    comment: '用户id，唯一'
+    comment: '用户 ID，唯一',
   },
   email: {
     type: STRING,

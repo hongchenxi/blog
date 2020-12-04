@@ -10,6 +10,7 @@ const koajwt = require('koa-jwt')
 const { JWT_SECRET_KEY } = require('./src/conf/secretKeys')
 const userAPIRouter = require('./src/routes/api/user')
 const columnAPIRouter = require('./src/routes/api/column')
+const postAPIRouter = require('./src/routes/api/post')
 
 const { ErrorModel } = require('./src/model/ResModel')
 const { jwtFailInfo } = require('./src/model/ErrorInfo')
@@ -58,6 +59,7 @@ app.use(
 // routes
 app.use(userAPIRouter.routes(), userAPIRouter.allowedMethods())
 app.use(columnAPIRouter.routes(), columnAPIRouter.allowedMethods())
+app.use(postAPIRouter.routes(), postAPIRouter.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {

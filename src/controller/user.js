@@ -52,7 +52,20 @@ async function login({ ctx, email, password }) {
   })
 }
 
+/**
+ * 用户名是否存在
+ * @param {string} email
+ */
+async function isExit(email) {
+  const userInfo = await getUserInfo(email)
+  if (userInfo) {
+    return new SuccessModel(userInfo)
+  } else {
+    return new ErrorModel(registerUserNameNotExistInfo)
+  }
+}
 module.exports = {
   register,
   login,
+  isExit,
 }

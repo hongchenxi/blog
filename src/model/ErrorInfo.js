@@ -6,7 +6,7 @@
 module.exports = {
   registerUserNameExistInfo: {
     code: 10001,
-    msg: '用户名已存在',
+    msg: '用户已存在',
   },
   registerFailInfo: {
     code: 10002,
@@ -31,5 +31,9 @@ module.exports = {
   loginCheckFailInfo: {
     code: 10007,
     msg: '未登录',
+  },
+  createPostFailInfo: {
+    code: 10008,
+    msg: '新建文章失败，请稍后再试',
   },
 }

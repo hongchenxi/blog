@@ -8,7 +8,7 @@ const { SuccessModel, ErrorModel } = require('../model/ResModel')
 const { createColumn } = require('../services/column')
 /**
  * 创建专栏
- * @param {*} param0 { title, descript }
+ * @param {Object} param0 { title, descript }
  */
 async function create({ userId, title, descript }) {
   try {

@@ -4,6 +4,7 @@
  */
 const User = require('./User')
 const Column = require('./Column')
+const Post = require('./Post')
 
 Column.belongsTo(User, {
   foreignKey: 'userId',
@@ -13,4 +14,5 @@ Column.belongsTo(User, {
 module.exports = {
   User,
   Column,
+  Post,
 }

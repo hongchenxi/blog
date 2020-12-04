@@ -9,7 +9,7 @@ const Column = seq.define('column', {
     type: STRING,
     allowNull: false,
     unique: true,
-    comment: '专栏id， 唯一',
+    comment: '专栏 ID， 唯一',
   },
   title: {
     type: STRING,
