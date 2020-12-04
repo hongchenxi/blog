@@ -8,9 +8,9 @@ const { isProd } = require('../utils/env')
 let MYSQL_CONF = {
   host: 'localhost',
   user: 'root',
-  password: 'ifxi0922.',
+  password: 'Hongchenxi0922.',
   port: '3306',
-  database: 'blog',
+  database: 'zhuanlan_blog_db',
 }
 
 // 线上配置

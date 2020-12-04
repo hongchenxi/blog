@@ -29,3 +29,5 @@ const User = seq.define('user', {
     comment: '头像',
   },
 })
+
+module.exports = User

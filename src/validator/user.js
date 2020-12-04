@@ -10,7 +10,8 @@ const SCHEMA = {
   properties: {
     email: {
       type: 'string',
-      pattern: '^[a-zA-Z][a-zA-Z0-9_]+$', // 字母开头，字母数字下划线
+      pattern:
+        '^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$',
       maxLength: 255,
       minLength: 8,
     },
