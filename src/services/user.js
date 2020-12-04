@@ -4,7 +4,7 @@
  */
 const { User } = require('../db/model/index')
 const {formatUser} = require('./_format.js')
-
+const { v4: uuidv4 } = require('uuid')
 /**
  *
  * @param {string} email 邮箱
@@ -16,7 +16,7 @@ async function getUserInfo(email, password) {
     Object.assign(whereOpt, { password })
   }
   const result = await User.findOne({
-    attribute: ['id', 'email', 'nickName', 'avatar'],
+    attribute: ['_id', 'email', 'nickName', 'avatar'],
     where: whereOpt,
   })
   
@@ -33,6 +33,7 @@ async function getUserInfo(email, password) {
  */
 async function createUser({ email, password, nickName }) {
   const result = await User.create({
+    _id: uuidv4(),
     email,
     password,
     nickName,

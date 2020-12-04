@@ -7,6 +7,12 @@ const seq = require('../seq')
 const { STRING, DECIMAL } = require('../types')
 
 const User = seq.define('user', {
+  _id: {
+    type: STRING,
+    allowNull: false,
+    unique: true,
+    comment: '用户id，唯一'
+  },
   email: {
     type: STRING,
     allowNull: false,

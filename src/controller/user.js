@@ -45,7 +45,6 @@ async function login({ ctx, email, password }) {
   }
 
   const token = jwt.sign({email}, JWT_SECRET_KEY, {expiresIn: '1d'}) // 过期时间：1天
-  console.log('login()', token)
   return new SuccessModel({
     token: token
   })
