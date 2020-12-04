@@ -23,7 +23,8 @@ router.post('/register', genValidator(userValidate), async (ctx, next) => {
 // 登录
 router.post('/login', async (ctx, next) => {
   const { email, password } = ctx.request.body
-  ctx.body = await login({ctx, email, password})
+  console.log('email: ', email)
+  ctx.body = await login({ ctx, email, password })
 })
 
 module.exports = router

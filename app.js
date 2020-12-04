@@ -5,11 +5,14 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+const koajwt = require('koa-jwt')
 
-// 路由
-const index = require('./src/routes/index')
-const users = require('./src/routes/users')
+const { JWT_SECRET_KEY } = require('./src/conf/secretKeys')
 const userAPIRouter = require('./src/routes/api/user')
+const columnAPIRouter = require('./src/routes/api/column')
+
+const { ErrorModel } = require('./src/model/ResModel')
+const { jwtFailInfo } = require('./src/model/ErrorInfo')
 
 // error handler
 onerror(app)
@@ -38,10 +41,23 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
+app.use(async (ctx, next) => {
+  return next().catch((error) => {
+    if (error.status === 401) {
+      ctx.status = 401
+      ctx.body = new ErrorModel(jwtFailInfo)
+    }
+  })
+})
+app.use(
+  koajwt({ secret: JWT_SECRET_KEY, key: 'jwtdata' }).unless({
+    path: [/\/register/, /\/login/, /^\/public/],
+  })
+)
+
 // routes
-app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
 app.use(userAPIRouter.routes(), userAPIRouter.allowedMethods())
+app.use(columnAPIRouter.routes(), columnAPIRouter.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {

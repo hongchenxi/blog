@@ -6,7 +6,7 @@
 const {
   registerUserNameExistInfo,
   registerFailInfo,
-  loginFailInfo
+  loginFailInfo,
 } = require('../model/ErrorInfo')
 const { ErrorModel, SuccessModel } = require('../model/ResModel')
 const doCrypto = require('../utils/cryp')
@@ -39,16 +39,17 @@ async function register({ email, password, nickName }) {
  * @param {*} param0 { ctx, email, password }
  */
 async function login({ ctx, email, password }) {
-  const userInfo = await getUserInfo(email, doCrypto(password)) 
+  const userInfo = await getUserInfo(email, doCrypto(password))
   if (!userInfo) {
     return new ErrorModel(loginFailInfo)
   }
 
-  const token = jwt.sign({email}, JWT_SECRET_KEY, {expiresIn: '1d'}) // 过期时间：1天
+  const token = jwt.sign(userInfo, JWT_SECRET_KEY, {
+    expiresIn: '1d',
+  }) // 过期时间：1天
   return new SuccessModel({
-    token: token
+    token: token,
   })
-
 }
 
 module.exports = {
